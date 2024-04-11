@@ -18,12 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "st7735.h"
+#include "testimg.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -87,9 +89,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM3_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  /*3*/
+  /*Start TIM3*/
   HAL_TIM_Base_Start_IT(&htim3);
+  ST7735_Init();
+  ST7735_FillScreenFast(ST7735_WHITE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,6 +104,23 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    ST7735_FillScreenFast(ST7735_BLUE);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_RED);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_GREEN);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_CYAN);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_MAGENTA);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_YELLOW);
+    HAL_Delay(1000);
+    ST7735_FillScreenFast(ST7735_WHITE);
+    HAL_Delay(1000);
+    ST7735_DrawImage(0, 0, 40, 40, (uint16_t*)gImage_img);
+    ST7735_WriteString(0, 40, "Hello World", Font_11x18, ST7735_BLUE, ST7735_WHITE);
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }

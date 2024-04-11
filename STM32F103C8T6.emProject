@@ -1,6 +1,9 @@
 <!DOCTYPE CrossStudio_Project_File>
 <solution Name="STM32F103C8T6" target="8" version="2">
   <configuration
+    Name="Common"
+    c_user_include_directories="./Hardware/st7735/" />
+  <configuration
     Name="Debug"
     c_preprocessor_definitions="DEBUG"
     gcc_debugging_level="Level 3"
@@ -89,9 +92,19 @@
       path="Drivers"
       recurse="Yes" />
     <folder Name="ES" exclude="" filter="*.*" path="ES" recurse="No" />
+    <folder Name="Hardware">
+      <folder Name="Inc">
+        <file file_name="Hardware/st7735/fonts.h" />
+        <file file_name="Hardware/st7735/st7735.h" />
+        <file file_name="Hardware/st7735/testimg.h" />
+      </folder>
+      <folder Name="Src">
+        <file file_name="Hardware/st7735/fonts.c" />
+        <file file_name="Hardware/st7735/st7735.c" />
+      </folder>
+    </folder>
     <folder Name="Internal Files">
       <file file_name="$(StudioDir)/samples/SEGGER_THUMB_Startup.s" />
     </folder>
-    <folder Name="Source Files" />
   </project>
 </solution>
